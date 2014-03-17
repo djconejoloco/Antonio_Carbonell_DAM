@@ -15,6 +15,7 @@ import javax.swing.JButton;
 public class Ventanaequipo extends JFrame {
 
 	private JPanel contentPane;
+	private equipo Equipo;
 
 	/**
 	 * Launch the application.
@@ -22,7 +23,7 @@ public class Ventanaequipo extends JFrame {
 	public static void main(String[] args) {
 		
 	}
-	public Ventanaequipo() {
+	public Ventanaequipo(equipo modificar) {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +40,8 @@ public class Ventanaequipo extends JFrame {
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.setBounds(10, 42, 89, 23);
 		panel.add(botonGuardar);
+		
+		Equipo=modificar;
 	}
 	private void guardarenfichero(){
 		ObjectInputStream salida;
