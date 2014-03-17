@@ -24,7 +24,7 @@ public class Ventanaequipo extends JFrame {
 		
 	}
 	public Ventanaequipo(equipo modificar) {
-		
+		Equipo=modificar;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -38,17 +38,17 @@ public class Ventanaequipo extends JFrame {
 		panel.setLayout(null);
 		
 		JButton botonGuardar = new JButton("Guardar");
-		botonGuardar.setBounds(10, 42, 89, 23);
+		botonGuardar.setBounds(158, 217, 89, 23);
 		panel.add(botonGuardar);
 		
-		Equipo=modificar;
+		
 	}
 	private void guardarenfichero(){
 		ObjectInputStream salida;
 		try
 		{
 		salida=new ObjectInputStream(new FileOutputStream("clientes.ser"));
-		salida.writeObject(equipo);
+		salida.writeObject(Equipo);
 		if(salida !=null)
 			salida.close();
 		}
