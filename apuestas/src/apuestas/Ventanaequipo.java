@@ -6,16 +6,27 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class Ventanaequipo extends JFrame {
 
 	private JPanel contentPane;
-	private equipo Equipo;
+	private equipo equipo;
+	private JTextField Nequipo;
+	private JTextField Gfavor;
+	private JTextField Gcontra;
+	private JTextField Pganados;
+	private JTextField Pperdidos;
+	private ObjectOutputStream salida;
 
 	/**
 	 * Launch the application.
@@ -23,8 +34,8 @@ public class Ventanaequipo extends JFrame {
 	public static void main(String[] args) {
 		
 	}
-	public Ventanaequipo(equipo modificar) {
-		Equipo=modificar;
+	public Ventanaequipo(equipo equipomodificar) {
+		equipo=equipomodificar;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -37,26 +48,83 @@ public class Ventanaequipo extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JLabel lavel_1 = new JLabel("Nombre Equipo");
+		lavel_1.setBounds(10, 25, 126, 14);
+		panel.add(lavel_1);
+		
+		JLabel label_2 = new JLabel("Goles a Favor");
+		label_2.setBounds(10, 64, 126, 14);
+		panel.add(label_2);
+		
+		JLabel label_3 = new JLabel("Goles en Contra");
+		label_3.setBounds(10, 101, 126, 14);
+		panel.add(label_3);
+		
+		JLabel label_4 = new JLabel("Partidos Ganados");
+		label_4.setBounds(10, 137, 126, 14);
+		panel.add(label_4);
+		
+		JLabel label_5 = new JLabel("Partidos Perdidos");
+		label_5.setBounds(10, 175, 126, 14);
+		panel.add(label_5);
+		
+		Nequipo = new JTextField();
+		Nequipo.setBounds(143, 22, 86, 20);
+		panel.add(Nequipo);
+		Nequipo.setColumns(10);
+		
+		Gfavor = new JTextField();
+		Gfavor.setColumns(10);
+		Gfavor.setBounds(143, 61, 86, 20);
+		panel.add(Gfavor);
+		
+		Gcontra = new JTextField();
+		Gcontra.setColumns(10);
+		Gcontra.setBounds(143, 98, 86, 20);
+		panel.add(Gcontra);
+		
+		Pganados = new JTextField();
+		Pganados.setColumns(10);
+		Pganados.setBounds(143, 134, 86, 20);
+		panel.add(Pganados);
+		
+		Pperdidos = new JTextField();
+		Pperdidos.setColumns(10);
+		Pperdidos.setBounds(143, 172, 86, 20);
+		panel.add(Pperdidos);
+		
 		JButton botonGuardar = new JButton("Guardar");
-		botonGuardar.setBounds(158, 217, 89, 23);
+		botonGuardar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				equipo.setGolesContra(Integer.valueOf(Gcontra.getText()));
+				equipo.setGolesFavor(Integer.valueOf(Gfavor.getText()));
+				equipo.setnombre(Nequipo.getText());
+				equipo.setPartidosGanados(Integer.valueOf(Pganados.getText()));
+				equipo.setPartidosPerdidos(Integer.valueOf(Pperdidos.getText()));
+				guardarenfichero();
+			}
+			
+		});
+		botonGuardar.setBounds(299, 97, 89, 23);
 		panel.add(botonGuardar);
+		
 		
 		
 	}
 	private void guardarenfichero(){
-		ObjectInputStream salida;
+		
 		try
 		{
-		salida=new ObjectInputStream(new FileOutputStream("clientes.ser"));
-		salida.writeObject(Equipo);
+		salida=new ObjectOutputStream(new FileOutputStream("equipo.ser"));
+		salida.writeObject(equipo);
 		if(salida !=null)
 			salida.close();
 		}
 		catch(IOException ioException)
 		{
 			System.err.println("Error al abrir archivo");
+			
 	}
-	}
-	}
+	}}
 
 	

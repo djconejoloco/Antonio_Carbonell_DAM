@@ -12,6 +12,19 @@ public class equipo implements Serializable{
 	
 	public equipo(String nom, int golesF, int golesC, int partidosG, int partidosP) {
 		// TODO Auto-generated constructor stub
+		nombreEquipo=nom;
+		golesfavor=golesF;
+		golesEncontra=golesC;
+		partidosGanados=partidosG;
+		partidosPerdidos=partidosP;
+	}
+	public equipo(){
+		nombreEquipo="";
+		golesfavor=0;
+		golesEncontra=0;
+		partidosGanados=0;
+		partidosPerdidos=0;
+		
 	}
 
 	public void setnombre(String nom) {
