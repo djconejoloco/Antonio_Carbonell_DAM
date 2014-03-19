@@ -12,6 +12,7 @@ public class equipo implements Serializable{
 	
 	public equipo(String nom, int golesF, int golesC, int partidosG, int partidosP) {
 		// TODO Auto-generated constructor stub
+		// damos valor a as clases que emos pasado por el constructor
 		nombreEquipo=nom;
 		golesfavor=golesF;
 		golesEncontra=golesC;
@@ -19,6 +20,7 @@ public class equipo implements Serializable{
 		partidosPerdidos=partidosP;
 	}
 	public equipo(){
+		// este constructor lo iniciamos con unas variables y pasara por principal en el segundo objeto
 		nombreEquipo="";
 		golesfavor=0;
 		golesEncontra=0;
