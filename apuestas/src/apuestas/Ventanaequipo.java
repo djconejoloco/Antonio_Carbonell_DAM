@@ -38,7 +38,7 @@ public class Ventanaequipo extends JFrame {
 		equipo=equipomodificar;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 505, 409);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -107,6 +107,14 @@ public class Ventanaequipo extends JFrame {
 		});
 		botonGuardar.setBounds(299, 97, 89, 23);
 		panel.add(botonGuardar);
+		
+		JButton GuardasrenDisco = new JButton("Guardar en disco");
+		GuardasrenDisco.setBounds(10, 249, 140, 23);
+		panel.add(GuardasrenDisco);
+		
+		JButton LeerEnDisco = new JButton("Leer en disco");
+		LeerEnDisco.setBounds(178, 249, 140, 23);
+		panel.add(LeerEnDisco);
 		
 		
 		

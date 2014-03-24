@@ -10,11 +10,20 @@ public class liga {
 		numequipos = 20;
 		nombreLiga = "Premier";
 		Equipo = new equipo[numequipos];
+		//iniciamos cada equipo para poder almacenar despues
+		for (int i = 0; i < numequipos; i++)
+		{
+			Equipo[i] = new equipo();
+		}
 	}
 
 	public liga(int numero, String nombre) {
 		numequipos = numero;
 		nombreLiga = nombre;
+		for (int i = 0; i < numequipos; i++)
+		{
+			Equipo[i] = new equipo();
+		}
 	}
 
 	public void setnombreliga(String nombre) {
@@ -34,8 +43,8 @@ public class liga {
 
 	}
 
-	public void setEquipo(equipo nombre ,int numero ){
+	public void setEquipo(equipo nombre, int numero) {
 
-		numequipos=numero;		 
+		numequipos = numero;
 	}
 }
