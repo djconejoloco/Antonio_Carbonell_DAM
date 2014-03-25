@@ -19,14 +19,14 @@ public class VentanaLiga extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private equipo equipo;
-	private liga Liga;
+	private liga liga;
 
 
 
 	
 	public VentanaLiga(liga ligamodificar) {
 		// pasamos liga  por el constructor 
-		Liga=ligamodificar;
+		liga=ligamodificar;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -65,7 +65,7 @@ public class VentanaLiga extends JFrame {
 		JButton Butonmodificar = new JButton("Modificar");
 		Butonmodificar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-			Ventanaequipo frameequipo=new Ventanaequipo(Liga.getequipo(Integer.valueOf(textField_2.getText())));
+				Ventanaequipo frameequipo = new Ventanaequipo(liga.getequipo(Integer.valueOf(textField_1.getText())));
 			frameequipo.setVisible(true);
 			
 			}});
