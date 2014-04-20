@@ -61,4 +61,9 @@ public class equipo implements Serializable{
 	public int getPartidosPerdidos(int partidosP){
 		return partidosPerdidos;
 	}
+	//este metodo devuelve a traves del jcombobox el nombrfe del equipo
+	public String ToString(){
+		return nombreEquipo;
+	}
+	
 }

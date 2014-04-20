@@ -8,18 +8,22 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.JTextComponent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
+import java.util.ArrayList;
 
 public class VentanaLiga extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private equipo equipo;
 	private liga liga;
+	protected JTextComponent textField_1;
 
 
 
@@ -39,11 +43,6 @@ public class VentanaLiga extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 132, 152, 20);
-		contentPane.add(textField_1);
-		
 		textField_2 = new JTextField();
 		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
@@ -54,7 +53,7 @@ public class VentanaLiga extends JFrame {
 		lblNewLabel.setBounds(10, 28, 152, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel EquipoAModificar = new JLabel("Equipo a modificar");
+		JLabel EquipoAModificar = new JLabel("Equipos");
 		EquipoAModificar.setBounds(10, 104, 152, 14);
 		contentPane.add(EquipoAModificar);
 		
@@ -69,8 +68,36 @@ public class VentanaLiga extends JFrame {
 			frameequipo.setVisible(true);
 			
 			}});
-		Butonmodificar.setBounds(38, 192, 89, 23);
+		Butonmodificar.setBounds(128, 192, 89, 23);
 		contentPane.add(Butonmodificar);
-	}
 		
-}
+		JButton button = new JButton("+");
+		button.setBounds(10, 192, 41, 23);
+		contentPane.add(button);
+		
+		JButton button_1 = new JButton("-");
+		button_1.setBounds(73, 192, 41, 23);
+		contentPane.add(button_1);
+		
+		JComboBox<equipo> comboBox = new JComboBox<equipo>();
+		comboBox.setBounds(10, 148, 207, 20);
+		contentPane.add(comboBox);
+		//Como añadir equipos
+				comboBox.addItem(new equipo("vlc",0,0,0,0));
+				comboBox.addItem(new equipo("bcn",0,0,0,0));
+				contentPane.add(comboBox);
+
+				//Como saber que equipo se ha seleccionado
+				equipo elegido=(equipo) comboBox.getItemAt(1);
+
+				//Como cambiar el nombre del equipo
+				System.out.println(elegido.getnombre());
+				elegido.setnombre("bcn2");
+
+				//Eliminar
+				comboBox.removeItemAt(0);
+
+			}
+
+	}
+

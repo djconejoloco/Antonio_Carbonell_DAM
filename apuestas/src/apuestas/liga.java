@@ -1,5 +1,7 @@
 package apuestas;
 
+import java.util.ArrayList;
+
 public class liga {
 	private int numequipos;
 	private String nombreLiga;
@@ -9,11 +11,12 @@ public class liga {
 	public liga() {
 		numequipos = 20;
 		nombreLiga = "Premier";
-		Equipo = new equipo[numequipos];
+		ArrayList <String> Equipo = new ArrayList<String>();
+		
 		//iniciamos cada equipo para poder almacenar despues
 		for (int i = 0; i < numequipos; i++)
 		{
-			Equipo[i] = new equipo();
+		
 		}
 	}
 
