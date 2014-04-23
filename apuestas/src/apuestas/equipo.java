@@ -12,7 +12,7 @@ public class equipo implements Serializable{
 	
 	public equipo(String nom, int golesF, int golesC, int partidosG, int partidosP) {
 		// TODO Auto-generated constructor stub
-		// damos valor a as clases que emos pasado por el constructor
+		// damos valor a as clases que hemos pasado por el constructor
 		nombreEquipo=nom;
 		golesfavor=golesF;
 		golesEncontra=golesC;
@@ -61,7 +61,7 @@ public class equipo implements Serializable{
 	public int getPartidosPerdidos(int partidosP){
 		return partidosPerdidos;
 	}
-	//este metodo devuelve a traves del jcombobox el nombrfe del equipo
+	//este metodo devuelve a traves del jcombobox el nombre del equipo
 	public String ToString(){
 		return nombreEquipo;
 	}

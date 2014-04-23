@@ -1,32 +1,28 @@
 package apuestas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class liga {
+public class liga implements Serializable {
 	private int numequipos;
 	private String nombreLiga;
-	private equipo Equipo[];
-	private String[] nombreEquipo = new String[20];
+	private ArrayList<equipo> Equipo = new ArrayList<equipo>();
 
 	public liga() {
-		numequipos = 20;
+		numequipos = 0;
 		nombreLiga = "Premier";
-		ArrayList <String> Equipo = new ArrayList<String>();
-		
-		//iniciamos cada equipo para poder almacenar despues
-		for (int i = 0; i < numequipos; i++)
-		{
-		
-		}
+
 	}
 
 	public liga(int numero, String nombre) {
 		numequipos = numero;
 		nombreLiga = nombre;
-		for (int i = 0; i < numequipos; i++)
-		{
-			Equipo[i] = new equipo();
+		// iniciamos cada equipo para poder almacenar despues
+		for (int i = 0; i < numequipos; i++) {
+			Equipo.add(new equipo());
 		}
+
 	}
 
 	public void setnombreliga(String nombre) {
@@ -41,13 +37,21 @@ public class liga {
 		return numequipos;
 	}
 
+	// nos devuelve la posicion en la tabla de clasificacion
 	public equipo getequipo(int situaciontabla) {
-		return Equipo[situaciontabla];
+		return Equipo.get(situaciontabla);
 
 	}
 
-	public void setEquipo(equipo nombre, int numero) {
+	// creamos un nuevo equipo para que lo capture con el jcombobox en
+	// ventanaliga
+	public void newequipo() {
 
-		numequipos = numero;
+		Equipo.add(new equipo());
+		numequipos++;
+    }
+	//para borrar un equipo de una posicion
+	public  void deletequipo(int posicio){
+		Equipo.remove(posicio);
 	}
 }

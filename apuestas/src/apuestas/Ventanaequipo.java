@@ -1,6 +1,7 @@
 package apuestas;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -27,6 +29,10 @@ public class Ventanaequipo extends JFrame {
 	private JTextField Pganados;
 	private JTextField Pperdidos;
 	private ObjectOutputStream salida;
+	private ObjectInputStream entrada;
+	private JComboBox jliga;
+	private VentanaLiga vliga;
+	private boolean modificar;
 
 	/**
 	 * Launch the application.
@@ -34,8 +40,10 @@ public class Ventanaequipo extends JFrame {
 	public static void main(String[] args) {
 		
 	}
-	public Ventanaequipo(equipo equipomodificar) {
+	public Ventanaequipo(equipo equipomodificar,JComboBox jliga,boolean modifica) {
 		equipo=equipomodificar;
+		this.jliga=jliga;
+		this.modificar=modificar;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 505, 409);
@@ -95,28 +103,63 @@ public class Ventanaequipo extends JFrame {
 		
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0){
+			public void actionPerformed(ActionEvent e){
+				guardarequipo();
+			}
+			});
+		botonGuardar.setBounds(299, 97, 89, 23);
+		panel.add(botonGuardar);
+		
+	}
+		//metodo para guardar equipo en un fichero
+		public void guardarequipo(){
 				equipo.setGolesContra(Integer.valueOf(Gcontra.getText()));
 				equipo.setGolesFavor(Integer.valueOf(Gfavor.getText()));
 				equipo.setnombre(Nequipo.getText());
 				equipo.setPartidosGanados(Integer.valueOf(Pganados.getText()));
 				equipo.setPartidosPerdidos(Integer.valueOf(Pperdidos.getText()));
 				guardarenfichero();
-			}
 			
-		});
-		botonGuardar.setBounds(299, 97, 89, 23);
-		panel.add(botonGuardar);
+			
 		
+		
+		//boton guardar en disco
 		JButton GuardasrenDisco = new JButton("Guardar en disco");
+		GuardasrenDisco.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent arg0){
+			guardarequipo();
+			guardarenfichero();
+			
+		}});	
 		GuardasrenDisco.setBounds(10, 249, 140, 23);
+		Container panel = null;
 		panel.add(GuardasrenDisco);
 		
 		JButton LeerEnDisco = new JButton("Leer en disco");
+		LeerEnDisco.addActionListener(new ActionListener(){
+		
+			public void actionPerformed(ActionEvent arg0){
+		recufichero();
+		Nequipo.setText(equipo.getnombre());
+		Gcontra.setText(String.valueOf(equipo.getGolesContra()));
+		
+		
+		
+			
+		}
+
+			private void recufichero() {
+				
+				
+				
+			}});	
 		LeerEnDisco.setBounds(178, 249, 140, 23);
 		panel.add(LeerEnDisco);
 		
 		
+		
+	}
+	public Ventanaequipo(apuestas.equipo getequipo) {
 		
 	}
 	private void guardarenfichero(){
