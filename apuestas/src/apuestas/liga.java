@@ -51,7 +51,7 @@ public class liga implements Serializable {
 		numequipos++;
     }
 	//para borrar un equipo de una posicion
-	public  void deletequipo(int posicio){
-		Equipo.remove(posicio);
+	public  void deletequipo(int posicion){
+		Equipo.remove(posicion);
 	}
 }
