@@ -27,7 +27,7 @@ public class VentanaLiga extends JFrame {
 	private liga Liga;
 	protected JTextComponent textField_1;
 	private JComboBox<equipo> comboBox;
-	private Ventanaequipo frameequipo;
+	private Ventanaequipo frameEquipo;
 	private VentanaLiga vliga;
 
 	public VentanaLiga(liga ligamodificar) {

@@ -29,26 +29,24 @@ public class Ventanaequipo extends JFrame {
 	private JTextField Pganados;
 	private JTextField Pperdidos;
 	private ObjectOutputStream salida;
-	private ObjectInputStream entrada;
-	private JComboBox jliga;
-	private VentanaLiga vliga;
-	private boolean modificar;
-	private JButton botonGuardar;
-	private JLabel lavel_1;
-	private Container panel;
-
+	private JComboBox<equipo>  jliga;
+	private boolean modifica;
+	
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 
 	}
-
 	
-	public Ventanaequipo(equipo equipomodificar, JComboBox jliga,boolean modifica) {
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public Ventanaequipo(equipo equipomodificar, JComboBox<equipo> jliga,boolean modificar) {
 		Equipo = equipomodificar;
 		this.jliga = jliga;
-		this.modificar = modifica;
+		this.modifica = modificar;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 505, 409);
@@ -107,31 +105,29 @@ public class Ventanaequipo extends JFrame {
 		panel.add(Pperdidos);
 		
 		// boton guardar en disco
-				JButton GuardasrenDisco = new JButton("Guardar en disco");
-				GuardasrenDisco.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						guardarequipo();
-						guardarenfichero();
+		JButton GuardasrenDisco = new JButton("Guardar en disco");
+		GuardasrenDisco.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					guardarequipo();
+					//guardarenfichero();
 
 					}
 				});
 				GuardasrenDisco.setBounds(10, 249, 140, 23);
 				panel.add(GuardasrenDisco);
 	
-
+		// boton para guardar 
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		//accion para llamar al metodo donde almacenaremos en un archivo al pulsar guardar
 				guardarequipo();
 			}
 		});
 		botonGuardar.setBounds(299, 97, 89, 23);
 		panel.add(botonGuardar);
-		 
-		leerequipo();
-	
 	}
-
+		
 	// metodo para guardar equipo en un fichero
 	public void guardarequipo() {
 		Equipo.setGolesContra(Integer.valueOf(Gcontra.getText()));
@@ -141,7 +137,7 @@ public class Ventanaequipo extends JFrame {
 		Equipo.setPartidosPerdidos(Integer.valueOf(Pperdidos.getText()));
 		guardarenfichero();
 	
-		if(!modificar)
+		if(modifica)
 			jliga.addItem(Equipo);
 		else 
 		{
@@ -151,38 +147,7 @@ public class Ventanaequipo extends JFrame {
 			equipoelegido.setnombre(Equipo.getnombre());
 		}
 	}
-		
-			private void leerequipo(){
-				Nequipo.setText(Equipo.getnombre());
-				Gcontra.setText(String.valueOf(Equipo.getGolesContra()));
-				Nequipo.setText(Equipo.getnombre());
-			
-			
-
-		
-
-		JButton LeerEnDisco = new JButton("Leer en disco");
-		LeerEnDisco.addActionListener(new ActionListener() {
-		
-
-			public void actionPerformed(ActionEvent arg0) {
-				recufichero();
-				
-
-			}
-
-			private void recufichero() {
-
-			}
-		});
-		LeerEnDisco.setBounds(178, 249, 140, 23);
-		panel.add(LeerEnDisco);
-
-	}
-
-	public Ventanaequipo(apuestas.equipo getequipo) {
-
-	}
+	
 
 	// metodo que recoge en que fichero guardar el equipo
 	private void guardarenfichero() {
@@ -197,4 +162,37 @@ public class Ventanaequipo extends JFrame {
 
 		}
 	}
+		
+			private void leerequipo(){
+				Nequipo.setText(Equipo.getnombre());
+				Gcontra.setText(String.valueOf(Equipo.getGolesContra()));
+				Gfavor.setText(String.valueOf(Equipo.getGolesFavor()));
+				Pganados.setText(String.valueOf(Equipo.getPartidosGanados()));
+				Pperdidos.setText(String.valueOf(Equipo.getPartidosPerdidos()));
+				
+			
+						
+			// boton de leer disco
+		JButton LeerEnDisco = new JButton("Leer en disco");
+		LeerEnDisco.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				recufichero();
+				Nequipo.setText(Equipo.getnombre());
+			Gcontra.setText(String.valueOf(Equipo.getGolesContra()));		
+			}			
+		});
+		LeerEnDisco.setBounds(178, 249, 140, 23);
+		}	
+		
+		private void recufichero() {
+		//panel.add(GuardasrenDisco);
+				
+		}
+	
+
+	public Ventanaequipo(apuestas.equipo getequipo) {
+
+	}
 }
+
+
