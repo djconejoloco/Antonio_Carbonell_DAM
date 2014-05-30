@@ -82,7 +82,7 @@ public class VentanaLiga extends JFrame {
 		Botonmodificar.setBounds(128, 192, 89, 23);
 		contentPane.add(Botonmodificar);
 
-		JComboBox<equipo> comboBox = new JComboBox<equipo>();
+		comboBox = new JComboBox<equipo>();
 		comboBox.setBounds(10, 148, 207, 20);
 		contentPane.add(comboBox);
 		// Como añadir equipos

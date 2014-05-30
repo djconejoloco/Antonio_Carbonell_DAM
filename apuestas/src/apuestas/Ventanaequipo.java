@@ -135,9 +135,9 @@ public class Ventanaequipo extends JFrame {
 		Equipo.setnombre(Nequipo.getText());
 		Equipo.setPartidosGanados(Integer.valueOf(Pganados.getText()));
 		Equipo.setPartidosPerdidos(Integer.valueOf(Pperdidos.getText()));
-		guardarenfichero();
+		//guardarenfichero();
 	
-		if(modifica)
+		if(!modifica)
 			jliga.addItem(Equipo);
 		else 
 		{
@@ -170,7 +170,6 @@ public class Ventanaequipo extends JFrame {
 				Pganados.setText(String.valueOf(Equipo.getPartidosGanados()));
 				Pperdidos.setText(String.valueOf(Equipo.getPartidosPerdidos()));
 				
-			
 						
 			// boton de leer disco
 		JButton LeerEnDisco = new JButton("Leer en disco");
@@ -193,6 +192,7 @@ public class Ventanaequipo extends JFrame {
 	public Ventanaequipo(apuestas.equipo getequipo) {
 
 	}
+
 }
 
 
