@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Ventanaequipo extends JFrame {
@@ -109,7 +110,7 @@ public class Ventanaequipo extends JFrame {
 		GuardasrenDisco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					guardarequipo();
-					//guardarenfichero();
+					guardarenfichero();
 
 					}
 				});
@@ -120,22 +121,36 @@ public class Ventanaequipo extends JFrame {
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
 		//accion para llamar al metodo donde almacenaremos en un archivo al pulsar guardar
 				guardarequipo();
+				// esto hace que se cierre la ventana
+				dispose();
+				
+				
 			}
 		});
 		botonGuardar.setBounds(299, 97, 89, 23);
 		panel.add(botonGuardar);
+		leerequipo();
 	}
 		
 	// metodo para guardar equipo en un fichero
 	public void guardarequipo() {
+		try{
 		Equipo.setGolesContra(Integer.valueOf(Gcontra.getText()));
 		Equipo.setGolesFavor(Integer.valueOf(Gfavor.getText()));
 		Equipo.setnombre(Nequipo.getText());
 		Equipo.setPartidosGanados(Integer.valueOf(Pganados.getText()));
 		Equipo.setPartidosPerdidos(Integer.valueOf(Pperdidos.getText()));
-		//guardarenfichero();
+
+		guardarenfichero();
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null,"valor incorrecto, introduce un numero");
+			
+		}
+		
+
 	
 		if(!modifica)
 			jliga.addItem(Equipo);
@@ -145,6 +160,7 @@ public class Ventanaequipo extends JFrame {
 			equipo equipoelegido=(equipo)jliga.getSelectedItem();
 			// con este  parametro se le cambia el nombre
 			equipoelegido.setnombre(Equipo.getnombre());
+			
 		}
 	}
 	
@@ -184,7 +200,7 @@ public class Ventanaequipo extends JFrame {
 		}	
 		
 		private void recufichero() {
-		//panel.add(GuardasrenDisco);
+	
 				
 		}
 	

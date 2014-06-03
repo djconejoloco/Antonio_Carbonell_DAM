@@ -43,6 +43,7 @@ public class VentanaLiga extends JFrame {
 		contentPane.setLayout(null);
 
 		Nombreliga = new JTextField();
+		Nombreliga.setText(Liga.getnombreliga());
 		Nombreliga.setBounds(10, 53, 152, 20);
 		contentPane.add(Nombreliga);
 		Nombreliga.setColumns(10);
@@ -65,17 +66,17 @@ public class VentanaLiga extends JFrame {
 		JLabel NumeroDeEquipos = new JLabel("Numero de equipos");
 		NumeroDeEquipos.setBounds(232, 28, 152, 14);
 		contentPane.add(NumeroDeEquipos);
+
 		// boton modificar con accio de escuchar
 		JButton Botonmodificar = new JButton("Modificar");
 		Botonmodificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				Liga.newequipo();
-				openequipowindow(Liga.getequipo(Liga.getNumEquipo() - 1), false);
-
-				Ventanaequipo frameequipo = new Ventanaequipo(Liga
-						.getequipo(Integer.valueOf(textField_1.getText())));
-				frameequipo.setVisible(true);
+				//cojemos el numero de equipo
+				//Liga.getNumEquipo();
+				openequipowindow(Liga.getequipo(comboBox.getSelectedIndex()),
+						true);
+				
+			
 
 			}
 		});
@@ -85,6 +86,7 @@ public class VentanaLiga extends JFrame {
 		comboBox = new JComboBox<equipo>();
 		comboBox.setBounds(10, 148, 207, 20);
 		contentPane.add(comboBox);
+
 		// Como añadir equipos
 		comboBox.addItem(new equipo("", 0, 0, 0, 0));
 		contentPane.add(comboBox);
@@ -95,7 +97,6 @@ public class VentanaLiga extends JFrame {
 		// Como cambiar el nombre del equipo
 		System.out.println(elegido.getnombre());
 		elegido.setnombre("");
-
 		// Eliminar
 		comboBox.removeItemAt(0);
 
@@ -105,7 +106,8 @@ public class VentanaLiga extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// con esto creamos un nuevo equipo
 				Liga.newequipo();
-				//Esto no dice que es un nuevo equipo y nos redirige al  al metodo openequipowindow
+				// Esto no dice que es un nuevo equipo y nos redirige al al
+				// metodo openequipowindow
 				openequipowindow(Liga.getequipo(Liga.getNumEquipo() - 1), false);
 			}
 		});
@@ -113,16 +115,26 @@ public class VentanaLiga extends JFrame {
 		contentPane.add(botonmas);
 		// boton menos
 		JButton botonmenos = new JButton("-");
+		botonmenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			comboBox.removeItemAt(comboBox.getSelectedIndex());
+				
+				
+
+			}
+		});
 		botonmenos.setBounds(72, 192, 41, 23);
 		contentPane.add(botonmenos);
 
 	}
-	//definimos que es un nuevo equipo 
+
+	// definimos que es un nuevo equipo
 	private void openequipowindow(equipo Equipo, boolean modificar) {
-		Ventanaequipo frameequipo = new Ventanaequipo(Equipo, this.comboBox,
-				modificar);
-		frameequipo.setVisible(true);
-		frameequipo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frameEquipo = new Ventanaequipo(Equipo, this.comboBox, modificar);
+		frameEquipo.setVisible(true);
+		frameEquipo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
+
 }
