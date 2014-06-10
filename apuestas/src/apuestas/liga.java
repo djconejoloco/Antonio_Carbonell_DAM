@@ -1,24 +1,40 @@
 package apuestas;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.sql.SQLException;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+
 
 public class liga implements Serializable {
 	private int numequipos;
 	private String nombreLiga;
 	private ArrayList<equipo> Equipo = new ArrayList<equipo>();
-
-	public liga() {
+	private int idLiga;
+	
+	//bd
+	private Connection conexion=null;
+	Statement instruccion=null;
+	ResultSet conjuntoresultados=null;
+	
+	//clase liga y se le pasa la conexion de BD por el constructor
+	public liga(Connection conexion) {
 		numequipos = 0;
 		nombreLiga = "Premier";
-
+		this.conexion=conexion;
+		leerliga();
 	}
-
-	public liga(int numero, String nombre) {
+	
+	//clase liga y se le pasa la conexion de BD por el constructor el numero y nombre 
+	public liga(Connection conexion,int numero, String nombre) {
 		numequipos = numero;
 		nombreLiga = nombre;
-		// iniciamos cada equipo para poder almacenar despues
+		this.conexion=conexion;
+			// iniciamos cada equipo para poder almacenar despues
 		for (int i = 0; i < numequipos; i++) {
 			Equipo.add(new equipo());
 		}
@@ -50,8 +66,41 @@ public class liga implements Serializable {
 		Equipo.add(new equipo());
 		numequipos++;
     }
+	public void BDnewequipo(equipo Equipo){
+		try{
+			//consultar base de datos
+			instruccion=(Statement) conexion.createStatement();
+			//insercion en base de datos
+			String sql_inst="INSERT INTO equipos (idLiga, nombreEquipo, golesFavor, golesEnContra, partidosGanados, partidosPerdidos)";
+			sql_inst=sql_inst+ "VALUES("+idLiga+",'"+Equipo.getnombre()+"',"+Equipo.getGolesFavor()+","+Equipo.getGolesContra()+","+Equipo.getPartidosGanados()+","+Equipo.getPartidosPerdidos()+")";
+		 // System.out.println(sql_inst);
+		  instruccion.executeUpdate(sql_inst);
+		  }
+		catch(SQLException excepcionSql){
+			excepcionSql.printStackTrace();
+			
+		}
+		
+		
+	}
 	//para borrar un equipo de una posicion
 	public  void deletequipo(int posicion){
 		Equipo.remove(posicion);
+	}
+	public void leerliga(){
+		try{
+		instruccion=(Statement) conexion.createStatement();
+		//la consulta en la base de datos
+		conjuntoresultados= instruccion.executeQuery("SELECT idLiga , nombre , numEquipos FROM ligas LIMIT 1");
+		//coje el resultado y dame el siguiente
+		conjuntoresultados.next();
+		//Almacenar en liga el nombre y numequipos
+		this.idLiga=(int)conjuntoresultados.getObject("idLiga");
+		this.nombreLiga=(String)conjuntoresultados.getObject("nombre");
+		this.numequipos=(int)conjuntoresultados.getObject("numequipos");
+	}catch(SQLException exceptionSql){
+		exceptionSql.printStackTrace();
+	}
+		
 	}
 }

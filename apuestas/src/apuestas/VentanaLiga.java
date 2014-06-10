@@ -34,8 +34,10 @@ public class VentanaLiga extends JFrame {
 		// pasamos liga por el constructor
 		Liga = ligamodificar;
 		vliga = this;
+		
+		
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -106,6 +108,8 @@ public class VentanaLiga extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// con esto creamos un nuevo equipo
 				Liga.newequipo();
+				System.out.println(Liga.getNumEquipo()-1);
+				
 				// Esto no dice que es un nuevo equipo y nos redirige al al
 				// metodo openequipowindow
 				openequipowindow(Liga.getequipo(Liga.getNumEquipo() - 1), false);
@@ -131,7 +135,7 @@ public class VentanaLiga extends JFrame {
 
 	// definimos que es un nuevo equipo
 	private void openequipowindow(equipo Equipo, boolean modificar) {
-		frameEquipo = new Ventanaequipo(Equipo, this.comboBox, modificar);
+		frameEquipo = new Ventanaequipo(Equipo, this.comboBox, modificar,this.Liga);
 		frameEquipo.setVisible(true);
 		frameEquipo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
