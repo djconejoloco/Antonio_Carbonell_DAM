@@ -51,7 +51,7 @@ public class VentanaLiga extends JFrame {
 		Nombreliga.setColumns(10);
 
 		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
+		textField_2.setEnabled(true);
 		textField_2.setColumns(10);
 		textField_2.setBounds(232, 53, 152, 20);
 		textField_2.setText(String.valueOf(Liga.getNumEquipo()));
