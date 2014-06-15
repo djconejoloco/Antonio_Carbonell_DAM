@@ -30,9 +30,10 @@ public class Ventanaequipo extends JFrame {
 	private JTextField Pganados;
 	private JTextField Pperdidos;
 	private ObjectOutputStream salida;
-	private JComboBox<equipo>  jliga;
+	private JComboBox <equipo>  jliga;
 	private boolean modifica;
 	private liga Liga;
+
 	
 	/**
 	 * Launch the application.
@@ -48,6 +49,7 @@ public class Ventanaequipo extends JFrame {
 		Equipo = equipomodificar;
 		this.jliga = jliga;
 		this.modifica = modificar;
+		this.Liga=Liga;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 505, 409);
@@ -138,6 +140,7 @@ public class Ventanaequipo extends JFrame {
 	// metodo para guardar equipo en un fichero
 	public void guardarequipo() {
 		try{
+		
 		Equipo.setGolesContra(Integer.valueOf(Gcontra.getText()));
 		Equipo.setGolesFavor(Integer.valueOf(Gfavor.getText()));
 		Equipo.setnombre(Nequipo.getText());
@@ -145,24 +148,27 @@ public class Ventanaequipo extends JFrame {
 		Equipo.setPartidosPerdidos(Integer.valueOf(Pperdidos.getText()));
 
 		
-		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null,"valor incorrecto, introduce un numero");
-			
-		}
+		 
 
 	
 		if(!modifica){
 			jliga.addItem(Equipo);
 			this.Liga.BDnewequipo(Equipo);
-	
-		}else 
+		}
+		else 
 		{
 			// si se modifica  se coge de aqui el nombre
 			equipo equipoelegido=(equipo)jliga.getSelectedItem();
 			// con este  parametro se le cambia el nombre
 			equipoelegido.setnombre(Equipo.getnombre());
+			}}
+		
+		catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"valor incorrecto, introduce un numero");
+				
+			}
 			
-		}}	
+		}	
 	
 	
 

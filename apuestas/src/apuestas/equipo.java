@@ -9,10 +9,12 @@ public class equipo implements Serializable{
 	private int golesEncontra;
 	private int partidosGanados;
 	private int partidosPerdidos;
+private int id;
 	
 	public equipo(String nom, int golesF, int golesC, int partidosG, int partidosP) {
 		// TODO Auto-generated constructor stub
 		// damos valor a as clases que hemos pasado por el constructor
+		id=0;
 		nombreEquipo=nom;
 		golesfavor=golesF;
 		golesEncontra=golesC;
@@ -26,7 +28,7 @@ public class equipo implements Serializable{
 		golesEncontra=0;
 		partidosGanados=0;
 		partidosPerdidos=0;
-		
+		id=0;
 	}
 
 	public void setnombre(String nom) {
@@ -66,5 +68,11 @@ public class equipo implements Serializable{
 		return nombreEquipo;
 	}
 	
+	public void setId(int i){
+		id=i;
+	}
+	public int getId(){
+		return id;
+	}
 	
 }
